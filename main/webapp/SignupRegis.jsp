@@ -13,50 +13,49 @@
 			<table>
 				<tr>
 					<th>이름</th>			
-					<td><input type="text" name="name" id="name"></td>
+					<td><input type="text" id="name"></td>
 				</tr>
 				<tr>
 					<th>이메일</th>			
-					<td><input type="email" name="email" id="email"></td>			
+					<td><input type="email"id="email"></td>			
 				</tr>
 				<tr>
 					<th>아이디</th>			
-					<td><input type="text" class="id-input" name="id" id="id"></td>			
+					<td><input type="text" class="id-input" id="id"></td>			
 				</tr>
-				<tr class="username-check-msg">
+				<tr>
 					
 				</tr>
 				<tr>
 					<th>비밀번호</th>			
-					<td><input type="password" name="password"id="password"></td>			
+					<td><input type="password" id="password"></td>			
 				</tr>
 			</table>
 			<button onclick="loadDoc()">가입하기</button>
 			<button type="reset">재작성</button>
-	</div>
-	<script>		
+	</div>	
+	<script>
 		function loadDoc(){
-			const name = document.getElementById("name").value;
-			const email = document.getElementById("email").value;
-			const id = document.getElementById("id").value;
-			const password = document.getElementById("password").value;
-			
-			const xhttp = new XMLHttpRequest();
-			 
-			let user = {
+		
+		const name = document.getElementById("name").value;
+		const email = document.getElementById("email").value;
+		const id = document.getElementById("id").value;
+		const password = document.getElementById("password").value;
+		
+		const xhttp = new XMLHttpRequest();
+		
+		let user = {
 				name:name,
 				email:email,
 				id:id,
-				password
+				password:password	
 			}
-			let jsonData = JSON.stringify(user);
-			/* xhttp.onload = function() {
-			    document.getElementById("demo").innerHTML = this.responseText;
-			} */
-			xhttp.open("POST", "SignupServletEx01", true);
-			xhttp.setRequestHeader("Content-type", "application/json");
-			xhttp.send(jsonData);
-		}
+		let jsonData = JSON.stringify(user);
+		
+		xhttp.open("POST", "SignupServletEx01", true);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send(jsonData);
+	}
 	</script>
 </body>
 </html>

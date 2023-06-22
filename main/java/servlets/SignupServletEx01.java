@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import UserDao.SignupDao;
 import beans.SignupBean;
+import service.SignupService;
 
 /**
  * JSON 형변환
@@ -23,8 +24,7 @@ public class SignupServletEx01 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		SignupDao dao = new SignupDao();
+		SignupService signupService = new SignupService();
 		BufferedReader br = request.getReader();
 		String data = br.readLine();
 		
@@ -34,8 +34,12 @@ public class SignupServletEx01 extends HttpServlet {
 		signupBean.setEmail((String)jobj.get("email"));
 		signupBean.setId((String)jobj.get("id"));
 		signupBean.setPassword((String)jobj.get("password"));
-		dao.insertUser(signupBean);
 		
+		if(signupService.signupServiceInsert(signupBean)) {
+			System.out.println("회원가입성공!!!");
+		}else {
+			System.out.println("회원가입실패!!!");
+		}
 		
 		response.setContentType("application/json");
 	}
